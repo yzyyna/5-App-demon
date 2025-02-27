@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>hello</title>
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+				const log =console.log
+				console.log('plus ready', plus.device)
+				// 获取地理位置
+				plus.geolocation.getCurrentPosition(function(p) {
+					log('current Geolocation\nLatitude:' + p.coords.latitude + '\nLongitude:' + p.coords.longitude +
+						'\nAltitude:' + p.coords.altitude);
+				}, function(e) {
+					log('Geolocation error: ' + e.message);
+				});
+				// 监听地理位置
+				plus.geolocation.watchPosition(function(p) {
+					log('changed Geolocation\nLatitude:' + p.coords.latitude + '\nLongitude:' + p.coords.longitude +
+						'\nAltitude:' + p.coords.altitude);
+				}, function(e) {
+					log('Geolocation error: ' + e.message);
+				});
+
+			});
+		</script>
+	</head>
+	<body>
+		<div>AA</div>
+	</body>
+</html>
